@@ -4,7 +4,6 @@ const taskInput = document.querySelector('#taskInput')
 const tasksList = document.querySelector('#tasksList')
 const emptyList = document.querySelector('#emptyList')
 
-
 let tasks = []
 
 if (localStorage.getItem('tasks')) {
@@ -15,7 +14,6 @@ if (localStorage.getItem('tasks')) {
 tasks.forEach((task) => renderTask(task))
 
 checkEmptyList()
-
 
 form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
@@ -44,40 +42,23 @@ function addTask(event) {
 
     checkEmptyList()
 
-
-
-    // if (tasksList.children.length > 1) {
-    //     emptyList.classList.add('none')
-    // }
-
 }
 
 function deleteTask(event) {
     if (event.target.dataset.action !== 'delete') return
 
-
-
-
     const parenNode = event.target.closest('.list-group-item')
 
     const id = Number(parenNode.id)
-
-
-    // const index = tasks.findIndex((task) => task.id === id)
-
-    // tasks.splice(index, 1)
 
     tasks = tasks.filter((task) => task.id !== id)
 
     saveToLocalStorage()
 
-
     parenNode.remove()
 
     checkEmptyList()
-    // if (tasksList.children.length === 1) {
-    //     emptyList.classList.remove('none')
-    // }
+    
 }
 
 
@@ -86,9 +67,7 @@ function doneTask(event) {
     if (event.target.dataset.action !== 'done') return
 
     const parentNode = event.target.closest('.list-group-item')
-
-
-
+    
     const id = Number(parentNode.id)
     const task = tasks.find((task) => task.id === id)
     task.done = !task.doneTask
